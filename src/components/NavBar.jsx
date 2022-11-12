@@ -7,31 +7,60 @@ const NavBar = (props) => {
   return (
     <nav className="sticky top-0 container mx-auto">
       {/* ---- FOR GETTING TO RESTAURANTS LANDING PAGE ---- */}
-      <div className="flex justify-end mx-auto bg-lightBrown opacity-80 px-24 py-3">
+      <div
+        className="flex justify-end mx-auto w-full bg-darkBrown text-white border-2 border-b-lightBrown
+       px-24 py-2"
+      >
         <Link to="/restaurants">
           <div>For Restaurants</div>
         </Link>
       </div>
 
       {/* ---- LOGO, REGISTER AND LOGIN BUTTONS ---- */}
-      <div className="flex items-center justify-between bg-white px-24 py-3">
-        <div className="logo">
-          <Link to="/">
+      <div className="flex items-center bg-white px-24 py-3">
+        <div className="logo w-1/2">
+          <Link
+            to={`${props.accountType === "restaurant" ? "/restaurants" : "/"}`}
+          >
             <img src={logo} alt="logo" className="w-20 py-3 md:w-40" />
           </Link>
         </div>
-        <div className="login-and-register space-x-6">
-          <Link to="/users/register">Register</Link>
-          <Link to="/users/login">Login</Link>
+        <div className="login-and-register flex w-1/2 justify-end space-x-2 md:space-x-6">
+          <Link
+            to={`${
+              props.accountType === "restaurant"
+                ? "/restaurants/register"
+                : "/users/register"
+            }`}
+          >
+            Register
+          </Link>
+          <Link
+            to={`${
+              props.accountType === "restaurant"
+                ? "/restaurants/login"
+                : "/users/login"
+            }`}
+          >
+            Login
+          </Link>
+          <Link
+            to="/users/restaurant-listing"
+            className={`${
+              props.accountType === "restaurant" ? "hidden" : "block"
+            }`}
+          >
+            Search
+          </Link>
         </div>
       </div>
-      <hr></hr>
+      <hr className="bg-white"></hr>
 
       {/* ---- USERS MENU BUTTONS ---- */}
       <div
         className={`${
           props.accountType === "user"
-            ? "usersMenu hidden gap-12 justify-center px-24 bg-lightBrown opacity-80 md:flex"
+            ? "hidden gap-12 justify-center px-24 bg-lightBrown opacity-80 md:flex"
             : "hidden"
         }`}
       >
@@ -65,7 +94,7 @@ const NavBar = (props) => {
       <div
         className={`${
           props.accountType === "restaurant"
-            ? "usersMenu hidden gap-12 justify-center px-24 bg-lightBrown md:flex"
+            ? "hidden gap-12 justify-center px-24 bg-lightBrown md:flex"
             : "hidden"
         }`}
       >
@@ -80,6 +109,12 @@ const NavBar = (props) => {
           className="text-lg font-medium hover:text-white hover:bg-darkBrown p-3"
         >
           Seats Management
+        </NavLink>
+        <NavLink
+          to="/restaurants/:id/tables-setting"
+          className="text-lg font-medium hover:text-white hover:bg-darkBrown p-3"
+        >
+          Tables Setting
         </NavLink>
         <NavLink
           to="/restaurants/:id/staff"

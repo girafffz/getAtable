@@ -13,10 +13,12 @@ import RestaurantLogin from "./pages/login/Login";
 import RestaurantDetails from "./pages/restaurants/RestaurantDetails";
 import RestaurantSeatsManagement from "./pages/restaurants/RestaurantSeatsManagement";
 import RestaurantStaffManagement from "./pages/restaurants/RestaurantStaffManagement";
+import RestaurantTablesSetting from "./pages/restaurants/RestaurantTablesSetting";
+import Footer from "./components/Footer";
 
 function App() {
   //  STATES  //
-  const [accountType, setAccountType] = useState("user");
+  const [accountType, setAccountType] = useState("restaurant");
   return (
     <>
       <BrowserRouter>
@@ -52,7 +54,12 @@ function App() {
             path="/restaurants/:id/seats"
             element={<RestaurantSeatsManagement />}
           />
+          <Route
+            path="/restaurants/:id/tables-setting"
+            element={<RestaurantTablesSetting />}
+          />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
