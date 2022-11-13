@@ -49,7 +49,7 @@ const RestaurantSeatsManagement = () => {
         setTableData(capacityData.data.tables);
         console.log(`get restaurant capacity END`);
       } catch (error) {
-        console.log(`error`);
+        console.log(error);
       }
     };
     getRestaurantCapacity();
