@@ -90,7 +90,7 @@ const RestaurantStaffManagement = () => {
             />
             <select
               id="role"
-              className="form-select w-full appearance-none text-gray-400 px-3 py-1.5 bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out focus:border-darkBrown md:w-32"
+              className="form-select w-full appearance-none px-3 py-1.5 bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out focus:border-darkBrown md:w-32"
               {...register("role")}
             >
               <option value="">Role</option>
@@ -99,7 +99,7 @@ const RestaurantStaffManagement = () => {
             </select>
             <select
               id="resign"
-              className="form-select w-full appearance-none text-gray-400 px-3 py-1.5 bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out focus:border-darkBrown md:w-32"
+              className="form-select w-full appearance-none px-3 py-1.5 bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out focus:border-darkBrown md:w-32"
               {...register("resign")}
             >
               <option value="">Resign?</option>

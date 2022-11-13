@@ -20,7 +20,13 @@ const NavBar = (props) => {
       <div className="flex items-center bg-white px-24 py-3">
         <div className="logo w-1/2">
           <Link
-            to={`${props.accountType === "restaurant" ? "/restaurants" : "/"}`}
+            to={`${
+              props.accountType === "restaurant"
+                ? "/restaurants"
+                : props.accountType === "user"
+                ? "/users"
+                : "/"
+            }`}
           >
             <img src={logo} alt="logo" className="w-20 py-3 md:w-40" />
           </Link>
@@ -60,7 +66,7 @@ const NavBar = (props) => {
       <div
         className={`${
           props.accountType === "user"
-            ? "hidden gap-12 justify-center px-24 bg-lightBrown opacity-80 md:flex"
+            ? "hidden gap-12 justify-center px-24 bg-lightBrown md:flex"
             : "hidden"
         }`}
       >

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/home/Home";
-import UsersLanding from "./pages/users/UsersLanding";
+// import UsersLanding from "./pages/users/UsersLanding";
 import UserRegister from "./pages/register/UserRegister";
 import UserLogin from "./pages/login/Login";
 import UserDetails from "./pages/users/UserDetails";
@@ -27,17 +27,17 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/users/register" element={<UserRegister />} />
           <Route path="/users/login" element={<UserLogin />} />
-          <Route path="/users/:id" element={<UsersLanding />} />
+          <Route path="/users" element={<Home />} />
           <Route path="/users/:id/account" element={<UserDetails />} />
           {/* <Route path="/users/:id/favourites" element={<UserFavourites />} /> */}
           {/* <Route path="/users/:id/history" element={<UserHistory />} /> */}
           {/* <Route path="/users/:id/reviews" element={<UserReviews />} /> */}
+          <Route path="/restaurants" element={<RestaurantsLanding />} />
           <Route
             path="/restaurants/register"
             element={<RestaurantRegister />}
           />
           <Route path="/restaurants/login" element={<RestaurantLogin />} />
-          <Route path="/restaurants/:id" element={<RestaurantsLanding />} />
           <Route
             path="/restaurants/:id/account"
             element={<RestaurantDetails />}
