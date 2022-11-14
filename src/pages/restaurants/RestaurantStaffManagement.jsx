@@ -8,6 +8,8 @@ const RestaurantStaffManagement = () => {
   const [databaseIsUpdated, setDataBaseIsUpdated] = useState(false);
   const [newStaffIsAdded, setNewStaffIsAdded] = useState(false);
   const [newStaffData, setNewStaffData] = useState(undefined); // store data of newly added staff on submit
+  const [staffIdToDelete, setStaffIdToDelete] = useState(undefined);
+  const [deleteStaff, setDeleteStaff] = useState(false);
 
   const { id } = useParams();
 
@@ -44,6 +46,36 @@ const RestaurantStaffManagement = () => {
     }
   }, [newStaffIsAdded, newStaffData]);
 
+  // Delete staff data in database
+  useEffect(() => {
+    if (staffIdToDelete !== undefined) {
+      const deleteStaffRecord = async () => {
+        console.log(`delete staff record START`);
+        try {
+          const res = await fetch(
+            `http://127.0.0.1:5000/api/restaurants/${id}/staff/delete`,
+            {
+              method: "DELETE",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(staffIdToDelete),
+            }
+          );
+          const createdData = await res.json();
+          console.log(createdData);
+          console.log(createdData.status);
+          if (createdData.status === "delete successful") {
+            setDataBaseIsUpdated(true);
+            setDeleteStaff(false); // reset state
+          }
+          console.log(`delete staff record END`);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      deleteStaffRecord();
+    }
+  }, [deleteStaff]);
+
   // Retrieving data from database
   useEffect(() => {
     const getAllRestaurantStaff = async () => {
@@ -65,24 +97,23 @@ const RestaurantStaffManagement = () => {
       }
     };
     getAllRestaurantStaff();
-  }, [newStaffIsAdded, newStaffData, databaseIsUpdated]);
+  }, [newStaffIsAdded, newStaffData, databaseIsUpdated, deleteStaff]);
 
   // Rendering data from database
   useEffect(() => {
     if (allStaffData !== undefined) {
       renderStaff();
     }
-  }, [allStaffData, newStaffIsAdded, newStaffData, databaseIsUpdated]);
+  }, [
+    allStaffData,
+    newStaffIsAdded,
+    newStaffData,
+    databaseIsUpdated,
+    deleteStaff,
+  ]);
 
   useEffect(() => {
-    reset({
-      username: "",
-      name: "",
-      last_name: "",
-      email: "",
-      password: "",
-      role: "",
-    });
+    reset();
   }, [databaseIsUpdated]);
 
   const renderStaff = () => {
@@ -124,6 +155,7 @@ const RestaurantStaffManagement = () => {
               <button
                 id={`${staff.id}`}
                 className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150"
+                onClick={handleDeleteClick}
               >
                 Delete
               </button>
@@ -152,6 +184,13 @@ const RestaurantStaffManagement = () => {
 
   const onError = (errors) => console.log(errors);
 
+  // when delete button is clicked
+  const handleDeleteClick = (e) => {
+    setStaffIdToDelete({
+      staff_id: e.target.id,
+    });
+    setDeleteStaff(true);
+  };
   return (
     <>
       <div className="container mx-auto mt-10 px-24 md:flex">
