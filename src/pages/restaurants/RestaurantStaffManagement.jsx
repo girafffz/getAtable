@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import RestaurantStaffDetails from "./modals/RestaurantStaffDetails";
 
 const RestaurantStaffManagement = () => {
   const [allStaffData, setAllStaffData] = useState(undefined); // store data returned from db
@@ -8,8 +9,9 @@ const RestaurantStaffManagement = () => {
   const [databaseIsUpdated, setDataBaseIsUpdated] = useState(false);
   const [newStaffIsAdded, setNewStaffIsAdded] = useState(false);
   const [newStaffData, setNewStaffData] = useState(undefined); // store data of newly added staff on submit
-  const [staffIdToDelete, setStaffIdToDelete] = useState(undefined);
+  const [staffId, setStaffId] = useState(undefined);
   const [deleteStaff, setDeleteStaff] = useState(false);
+  const [editStaff, setEditStaff] = useState(false);
 
   const { id } = useParams();
 
@@ -48,7 +50,7 @@ const RestaurantStaffManagement = () => {
 
   // Delete staff data in database
   useEffect(() => {
-    if (staffIdToDelete !== undefined) {
+    if (staffId !== undefined) {
       const deleteStaffRecord = async () => {
         console.log(`delete staff record START`);
         try {
@@ -57,7 +59,7 @@ const RestaurantStaffManagement = () => {
             {
               method: "DELETE",
               headers: { "content-type": "application/json" },
-              body: JSON.stringify(staffIdToDelete),
+              body: JSON.stringify(staffId),
             }
           );
           const createdData = await res.json();
@@ -142,18 +144,27 @@ const RestaurantStaffManagement = () => {
             <div className="space-x-2 mt-2 md:flex md:w-1/4 md:justify-end md:mt-0">
               <button
                 id={`${staff.id}`}
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#staffDetails"
+                onClick={handleViewClick}
                 className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150"
               >
                 View
               </button>
               <button
                 id={`${staff.id}`}
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#staffDetails"
+                onClick={handleEditClick}
                 className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150"
               >
                 Edit
               </button>
               <button
                 id={`${staff.id}`}
+                type="button"
                 className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150"
                 onClick={handleDeleteClick}
               >
@@ -184,13 +195,29 @@ const RestaurantStaffManagement = () => {
 
   const onError = (errors) => console.log(errors);
 
-  // when delete button is clicked
-  const handleDeleteClick = (e) => {
-    setStaffIdToDelete({
+  // when either view, edit or delete button is clicked
+  const getStaffId = (e) => {
+    setStaffId({
       staff_id: e.target.id,
     });
+  };
+
+  // when delete button is clicked
+  const handleDeleteClick = (e) => {
+    getStaffId(e);
     setDeleteStaff(true);
   };
+
+  const handleEditClick = (e) => {
+    getStaffId(e);
+    setEditStaff(true);
+  };
+
+  const handleViewClick = (e) => {
+    getStaffId(e);
+    setEditStaff(false);
+  };
+
   return (
     <>
       <div className="container mx-auto mt-10 px-24 md:flex">
@@ -324,6 +351,14 @@ const RestaurantStaffManagement = () => {
       <div className="container mx-auto mt-10 px-24">
         {/* ---- Staff Card ---- */}
         {allRestaurantStaff}
+        {
+          <RestaurantStaffDetails
+            setEditStaff={setEditStaff}
+            editStaff={editStaff}
+            setDataBaseIsUpdated={setDataBaseIsUpdated}
+            staffId={staffId}
+          />
+        }
       </div>
     </>
   );
