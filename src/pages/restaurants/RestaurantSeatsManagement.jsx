@@ -9,7 +9,7 @@ const RestaurantSeatsManagement = () => {
 
   const { id } = useParams();
 
-  // Updating data from database
+  // Updating data in database
   useEffect(() => {
     const updateRestaurantCapacity = async () => {
       console.log(`update restaurant capacity START`);
@@ -26,7 +26,7 @@ const RestaurantSeatsManagement = () => {
         console.log(updatedData);
         console.log(`update restaurant capacity END`);
       } catch (error) {
-        console.log(`error`);
+        console.log(error);
       }
     };
     updateRestaurantCapacity();
