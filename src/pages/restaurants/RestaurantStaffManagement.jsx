@@ -12,6 +12,8 @@ const RestaurantStaffManagement = () => {
   const [staffId, setStaffId] = useState(undefined);
   const [deleteStaff, setDeleteStaff] = useState(false);
   const [editStaff, setEditStaff] = useState(false);
+  const [singleStaffData, setSingleStaffData] = useState(undefined);
+  const [toUpdateRecords, setToUpdateRecords] = useState(false);
 
   const { id } = useParams();
 
@@ -47,6 +49,30 @@ const RestaurantStaffManagement = () => {
       createStaffRecord();
     }
   }, [newStaffIsAdded, newStaffData]);
+
+  useEffect(() => {
+    if (staffId != undefined) {
+      const getOneStaff = async () => {
+        console.log(`get single staff START`);
+        try {
+          const res = await fetch(
+            `http://127.0.0.1:5000/api/restaurants/${id}/staff`,
+            {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(staffId),
+            }
+          );
+          const oneStaffData = await res.json();
+          setSingleStaffData(oneStaffData.data.staff);
+          console.log(`get single staff END`);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getOneStaff();
+    }
+  }, [staffId]);
 
   // Delete staff data in database
   useEffect(() => {
@@ -99,7 +125,13 @@ const RestaurantStaffManagement = () => {
       }
     };
     getAllRestaurantStaff();
-  }, [newStaffIsAdded, newStaffData, databaseIsUpdated, deleteStaff]);
+  }, [
+    newStaffIsAdded,
+    newStaffData,
+    databaseIsUpdated,
+    deleteStaff,
+    toUpdateRecords,
+  ]);
 
   // Rendering data from database
   useEffect(() => {
@@ -112,11 +144,12 @@ const RestaurantStaffManagement = () => {
     newStaffData,
     databaseIsUpdated,
     deleteStaff,
+    toUpdateRecords,
   ]);
 
   useEffect(() => {
     reset();
-  }, [databaseIsUpdated]);
+  }, [databaseIsUpdated, toUpdateRecords]);
 
   const renderStaff = () => {
     const allStaff = allStaffData.map((staff) => {
@@ -311,7 +344,7 @@ const RestaurantStaffManagement = () => {
               className="form-select w-full appearance-none px-3 py-1.5 bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out focus:border-darkBrown md:w-32"
               {...register("resigned")}
             >
-              <option value="">Resign?</option>
+              <option value="">Resigned?</option>
               <option value="false">No</option>
               <option value="true">Yes</option>
             </select> */}
@@ -357,6 +390,8 @@ const RestaurantStaffManagement = () => {
             editStaff={editStaff}
             setDataBaseIsUpdated={setDataBaseIsUpdated}
             staffId={staffId}
+            singleStaffData={singleStaffData}
+            setToUpdateRecords={setToUpdateRecords}
           />
         }
       </div>
