@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate, useParams } from "react-router-dom";
 import LoginContext from "../context/LoginContext";
 
 import logo from "../images/logo.png";
 
 const NavBar = (props) => {
   const loginCtx = useContext(LoginContext);
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const goRestaurantSite = () => {
@@ -15,6 +16,9 @@ const NavBar = (props) => {
 
   const handleLogoClick = () => {
     loginCtx.setRestaurantSite(false);
+    loginCtx.isLogin(false);
+    loginCtx.setPersonLogin(undefined);
+    loginCtx.setAccountType("");
   };
 
   return (
@@ -25,7 +29,7 @@ const NavBar = (props) => {
        px-24 py-2"
       >
         <Link to="/restaurants" onClick={() => goRestaurantSite()}>
-          <div>For Restaurant Site</div>
+          <div className=" hover:underline">For Restaurant Site</div>
         </Link>
       </div>
 
@@ -36,7 +40,13 @@ const NavBar = (props) => {
             <img src={logo} alt="logo" className="w-20 py-3 md:w-40" />
           </Link>
         </div>
-        <div className="login-and-register flex w-1/2 justify-end space-x-2 md:space-x-6">
+        <div
+          className={`${
+            loginCtx.isLogin
+              ? "hidden"
+              : "login-and-register flex w-1/2 justify-end space-x-2 md:space-x-6"
+          }`}
+        >
           <Link
             to={`${
               loginCtx.restaurantSite
@@ -59,6 +69,15 @@ const NavBar = (props) => {
           >
             Search
           </Link>
+        </div>
+        <div
+          className={`${
+            loginCtx.isLogin
+              ? "text-xl flex w-1/2 justify-end space-x-2 md:space-x-6"
+              : "hidden"
+          }`}
+        >
+          {`Welcome, ${loginCtx.personLogin?.name} (${loginCtx.personLogin?.role})`}
         </div>
       </div>
       <hr className="bg-white"></hr>

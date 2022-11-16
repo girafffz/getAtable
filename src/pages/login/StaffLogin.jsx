@@ -41,6 +41,7 @@ const StaffLogin = () => {
           setErrorMessage(accountInfo.message);
           if (accountInfo.status === "successful") {
             loginCtx.setIsLogin(true);
+            loginCtx.setRestaurantSite(true);
             loginCtx.setAccountType("restaurant");
           }
 
@@ -91,7 +92,10 @@ const StaffLogin = () => {
             type="text"
             name=""
             id="email"
-            onChange={() => setStartLogin(false)}
+            onChange={() => {
+              setStartLogin(false);
+              loginCtx.isLogin(false);
+            }}
             className="form-control w-full mt-2 mb-4 px-3 py-1.5 text-base font-normal border border-solid border-gray-300 rounded focus:ring-darkBrown"
             {...register("email", {
               required: {
