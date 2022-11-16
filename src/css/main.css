@@ -752,6 +752,20 @@ video {
   text-shadow: 0 0 0 #212529;
 }
 
+.btn-check[disabled] + .btn {
+  pointer-events: none;
+  -webkit-filter: none;
+          filter: none;
+  opacity: 0.65;
+}
+
+.btn-check:disabled + .btn {
+  pointer-events: none;
+  -webkit-filter: none;
+          filter: none;
+  opacity: 0.65;
+}
+
 .form-floating > .form-control {
   height: calc(3.5rem + 2px);
   line-height: 1.25;
@@ -817,6 +831,15 @@ video {
 }
 
 .input-group > .form-select:focus {
+  z-index: 3;
+}
+
+.input-group .btn {
+  position: relative;
+  z-index: 2;
+}
+
+.input-group .btn:focus {
   z-index: 3;
 }
 
@@ -1094,7 +1117,41 @@ textarea.form-control.is-invalid {
   z-index: 3;
 }
 
+.btn-check:focus + .btn {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-check:checked + .btn {
+  box-shadow: none;
+}
+
+.btn-check:active + .btn {
+  box-shadow: none;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
 .btn.active {
+  box-shadow: none;
+}
+
+.btn-check:checked + .btn:focus {
+  box-shadow: none;
+}
+
+.btn-check:active + .btn:focus {
+  box-shadow: none;
+}
+
+.btn:active:focus {
   box-shadow: none;
 }
 
@@ -4614,6 +4671,12 @@ textarea.form-control.is-invalid {
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -4792,6 +4855,11 @@ textarea.form-control.is-invalid {
   text-align: center;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -4805,11 +4873,6 @@ textarea.form-control.is-invalid {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 
 .font-medium {
@@ -4938,6 +5001,10 @@ body {
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
 }
 
 .hover\:no-underline:hover {
