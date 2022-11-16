@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+// import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import LoginContext from "../../context/LoginContext";
 
 const RestaurantDetails = () => {
-  return <div>Restaurant Details</div>;
+  const { id } = useParams();
+  const loginCtx = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loginCtx.isLogin) {
+      navigate(`/restaurants/${loginCtx.personLogin.restaurant_id}/account`);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!loginCtx.isLogin) {
+      navigate("/restaurants/login");
+      loginCtx.setRestaurantSite(true);
+    }
+  }, []);
+  return <div className="container mx-auto px-24">Restaurant Details</div>;
 };
 
 export default RestaurantDetails;
