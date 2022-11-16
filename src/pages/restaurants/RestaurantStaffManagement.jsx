@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import LoginContext from "../../context/LoginContext";
 import RestaurantStaffDetails from "./modals/RestaurantStaffDetails";
 
 const RestaurantStaffManagement = () => {
@@ -16,10 +17,23 @@ const RestaurantStaffManagement = () => {
   const [toUpdateRecords, setToUpdateRecords] = useState(false);
 
   const { id } = useParams();
+  const loginCtx = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  console.log("login status at staff mgmt: ", loginCtx.isLogin);
+  console.log("login status at staff mgmt: ", loginCtx.personLogin);
 
   const capitalizeFirstLetter = (string) => {
     return string[0].toUpperCase() + string.slice(1);
   };
+
+  console.log(id);
+
+  useEffect(() => {
+    if (!loginCtx.isLogin || loginCtx.personLogin?.restaurant_id != id) {
+      navigate("/restaurants/login");
+    }
+  }, [loginCtx.isLogin, loginCtx.personLogin]);
 
   // Create new staff data in database
   useEffect(() => {
@@ -51,7 +65,7 @@ const RestaurantStaffManagement = () => {
   }, [newStaffIsAdded, newStaffData]);
 
   useEffect(() => {
-    if (staffId != undefined) {
+    if (staffId !== undefined) {
       const getOneStaff = async () => {
         console.log(`get single staff START`);
         try {
