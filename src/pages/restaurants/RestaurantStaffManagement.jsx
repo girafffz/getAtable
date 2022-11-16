@@ -30,10 +30,16 @@ const RestaurantStaffManagement = () => {
   console.log(id);
 
   useEffect(() => {
-    if (!loginCtx.isLogin || loginCtx.personLogin?.restaurant_id != id) {
+    if (loginCtx.isLogin) {
+      navigate(`/restaurants/${loginCtx.personLogin.restaurant_id}/staff`);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!loginCtx.isLogin) {
       navigate("/restaurants/login");
     }
-  }, [loginCtx.isLogin, loginCtx.personLogin]);
+  }, []);
 
   // Create new staff data in database
   useEffect(() => {
@@ -145,6 +151,7 @@ const RestaurantStaffManagement = () => {
     databaseIsUpdated,
     deleteStaff,
     toUpdateRecords,
+    id,
   ]);
 
   // Rendering data from database

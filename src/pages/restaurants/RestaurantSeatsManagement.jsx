@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import LoginContext from "../../context/LoginContext";
 
 const RestaurantSeatsManagement = () => {
   const [tablesInRestaurant, setTablesInRestaurant] = useState();
@@ -8,6 +9,23 @@ const RestaurantSeatsManagement = () => {
   const [tableStatus, setTableStatus] = useState(undefined);
 
   const { id } = useParams();
+  const loginCtx = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  console.log(id);
+  console.log(loginCtx.personLogin);
+
+  useEffect(() => {
+    if (loginCtx.isLogin) {
+      navigate(`/restaurants/${loginCtx.personLogin.restaurant_id}/seats`);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!loginCtx.isLogin) {
+      navigate("/restaurants/login");
+    }
+  }, []);
 
   // Updating data in database
   useEffect(() => {
@@ -53,7 +71,7 @@ const RestaurantSeatsManagement = () => {
       }
     };
     getRestaurantCapacity();
-  }, [tableIsOccupied, tableStatus]);
+  }, [tableIsOccupied, tableStatus, id]);
 
   // Rendering data from database
   useEffect(() => {
