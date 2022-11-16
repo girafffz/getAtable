@@ -1,9 +1,30 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import LoginContext from "../context/LoginContext";
 
 import logo from "../images/logo.png";
 
 const NavBar = (props) => {
+  const [showRestaurantNavMenu, setShowRestaurantNavMenu] = useState(false);
+  const loginCtx = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  const goRestaurantSite = () => {
+    loginCtx.setRestaurantSite(true);
+    navigate("/restaurants");
+  };
+
+  const showNavMenu = () => {
+    if (loginCtx.restaurant) {
+      if (loginCtx.isLogin) {
+        setShowRestaurantNavMenu(true);
+      }
+    }
+  };
+
+  // const showNavMenu = () => {
+
+  // }
   return (
     <nav className="sticky top-0 container mx-auto">
       {/* ---- FOR GETTING TO RESTAURANTS LANDING PAGE ---- */}
@@ -11,7 +32,7 @@ const NavBar = (props) => {
         className="flex justify-end mx-auto w-full bg-darkBrown text-white border-2 border-b-lightBrown
        px-24 py-2"
       >
-        <Link to="/restaurants">
+        <Link to="/restaurants" onClick={() => goRestaurantSite()}>
           <div>For Restaurants</div>
         </Link>
       </div>
@@ -99,7 +120,7 @@ const NavBar = (props) => {
       {/* ---- RESTAURANT MENU BUTTONS ---- */}
       <div
         className={`${
-          props.accountType === "restaurant"
+          loginCtx.isLogin && loginCtx.accountType === "restaurant"
             ? "hidden gap-12 justify-center px-24 bg-lightBrown md:flex"
             : "hidden"
         }`}
@@ -118,13 +139,21 @@ const NavBar = (props) => {
         </NavLink>
         <NavLink
           to="/restaurants/:id/tables-setting"
-          className="text-lg font-medium hover:text-white hover:bg-darkBrown p-3"
+          className={`${
+            loginCtx.isLogin && loginCtx.personLogin?.role === "manager"
+              ? "text-lg font-medium hover:text-white hover:bg-darkBrown p-3"
+              : "hidden"
+          }`}
         >
           Tables Setting
         </NavLink>
         <NavLink
           to="/restaurants/:id/staff"
-          className="text-lg font-medium hover:text-white hover:bg-darkBrown p-3"
+          className={`${
+            loginCtx.isLogin && loginCtx.personLogin?.role === "manager"
+              ? "text-lg font-medium hover:text-white hover:bg-darkBrown p-3"
+              : "hidden"
+          }`}
         >
           Staff Management
         </NavLink>

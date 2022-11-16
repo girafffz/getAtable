@@ -27,6 +27,7 @@ function App() {
     "http://localhost:3000/restaurants"
   );
   const [usersUrl, setUsersUrl] = useState("");
+  const [restaurantSite, setRestaurantSite] = useState(false);
   const [accountType, setAccountType] = useState("restaurant");
   return (
     <>
@@ -42,6 +43,8 @@ function App() {
           setUsersUrl,
           accountType,
           setAccountType,
+          restaurantSite,
+          setRestaurantSite,
         }}
       >
         <BrowserRouter>
