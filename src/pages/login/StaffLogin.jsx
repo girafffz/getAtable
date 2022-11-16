@@ -46,7 +46,11 @@ const StaffLogin = () => {
 
           // console.log(`login process END`);
           // console.log("After login", loginCtx.isLogin);
-          navigate(`/restaurants/${accountInfo.data.restaurant_id}/staff`);
+          if (accountInfo.data.role === "manager") {
+            navigate(`/restaurants/${accountInfo.data.restaurant_id}/staff`);
+          } else {
+            navigate(`/restaurants/${accountInfo.data.restaurant_id}/seats`);
+          }
 
           console.log("Data returned from db:", accountInfo.data);
           console.log("Status returned from db:", accountInfo.status);
