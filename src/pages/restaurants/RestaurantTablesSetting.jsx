@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
-// import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import LoginContext from "../../context/LoginContext";
 
 const RestaurantTablesSetting = () => {
-  // const { id } = useParams();
+  const { id } = useParams();
+  const loginCtx = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loginCtx.isLogin) {
+      navigate(
+        `/restaurants/${loginCtx.personLogin.restaurant_id}/tables-setting`
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!loginCtx.isLogin) {
+      navigate("/restaurants/login");
+      loginCtx.setRestaurantSite(true);
+    }
+  }, []);
+
   // adding react-hook-forms functionality
   const {
     register,
