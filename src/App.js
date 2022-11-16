@@ -9,6 +9,7 @@ import StaffLogin from "./pages/login/StaffLogin";
 // import UsersLanding from "./pages/users/UsersLanding";
 import UserRegister from "./pages/register/UserRegister";
 import UserDetails from "./pages/users/UserDetails";
+import RestaurantListing from "./pages/restaurants/RestaurantListing";
 import RestaurantsLanding from "./pages/restaurants/RestaurantsLanding";
 import RestaurantRegister from "./pages/register/RestaurantRegister";
 import RestaurantDetails from "./pages/restaurants/RestaurantDetails";
@@ -26,9 +27,11 @@ function App() {
   const [restaurantsUrl, setRestaurantsUrl] = useState(
     "http://localhost:3000/restaurants"
   );
-  const [usersUrl, setUsersUrl] = useState("");
+  const [usersUrl, setUsersUrl] = useState("http://localhost:3000/users");
   const [restaurantSite, setRestaurantSite] = useState(false);
   const [accountType, setAccountType] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <>
       <LoginContext.Provider
@@ -50,11 +53,34 @@ function App() {
         <BrowserRouter>
           <NavBar accountType={accountType} setAccountType={setAccountType} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <Home
+                  searchInput={searchInput}
+                  setSearchInput={setSearchInput}
+                />
+              }
+            />
+            <Route
+              path="/users/restaurant-listing"
+              element=<RestaurantListing
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+              />
+            />
             <Route path="/users/login" element={<UserLogin />} />
             <Route path="/users/register" element={<UserRegister />} />
             <Route path="/users/:id/account" element={<UserDetails />} />
-            <Route path="/users/:id" element={<Home />} />
+            <Route
+              path="/users/:id"
+              element={
+                <Home
+                  searchInput={searchInput}
+                  setSearchInput={setSearchInput}
+                />
+              }
+            />
             {/* <Route path="/users/:id/favourites" element={<UserFavourites />} /> */}
             {/* <Route path="/users/:id/history" element={<UserHistory />} /> */}
             {/* <Route path="/users/:id/reviews" element={<UserReviews />} /> */}
