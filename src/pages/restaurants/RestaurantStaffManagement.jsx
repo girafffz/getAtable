@@ -38,6 +38,7 @@ const RestaurantStaffManagement = () => {
   useEffect(() => {
     if (!loginCtx.isLogin) {
       navigate("/restaurants/login");
+      loginCtx.setRestaurantSite(true);
     }
   }, []);
 
