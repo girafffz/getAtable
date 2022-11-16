@@ -28,7 +28,7 @@ function App() {
   );
   const [usersUrl, setUsersUrl] = useState("");
   const [restaurantSite, setRestaurantSite] = useState(false);
-  const [accountType, setAccountType] = useState("restaurant");
+  const [accountType, setAccountType] = useState("");
   return (
     <>
       <LoginContext.Provider
@@ -51,7 +51,7 @@ function App() {
           <NavBar accountType={accountType} setAccountType={setAccountType} />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<UserLogin />} />
+            <Route path="/users/login" element={<UserLogin />} />
             <Route path="/users/register" element={<UserRegister />} />
             <Route path="/users/:id/account" element={<UserDetails />} />
             <Route path="/users/:id" element={<Home />} />
