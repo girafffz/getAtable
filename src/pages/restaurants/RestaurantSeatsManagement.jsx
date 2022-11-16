@@ -6,6 +6,8 @@ const RestaurantSeatsManagement = () => {
   const [tablesInRestaurant, setTablesInRestaurant] = useState();
   const [tableIsOccupied, setTableIsOccupied] = useState(false);
   const [tableData, setTableData] = useState(undefined);
+  const [seatsAvailable, setSeatsAvailable] = useState(0);
+  const [maxCapacity, setMaxCapacity] = useState(0);
   const [tableStatus, setTableStatus] = useState(undefined);
 
   const { id } = useParams();
@@ -24,6 +26,7 @@ const RestaurantSeatsManagement = () => {
   useEffect(() => {
     if (!loginCtx.isLogin) {
       navigate("/restaurants/login");
+      loginCtx.setRestaurantSite(true);
     }
   }, []);
 
@@ -64,7 +67,10 @@ const RestaurantSeatsManagement = () => {
           }
         );
         const capacityData = await res.json();
+        console.log(capacityData);
         setTableData(capacityData.data.tables);
+        setSeatsAvailable(capacityData.data.seats_available);
+        setMaxCapacity(capacityData.data.max_capacity);
         console.log(`get restaurant capacity END`);
       } catch (error) {
         console.log(error);
@@ -151,7 +157,7 @@ const RestaurantSeatsManagement = () => {
   return (
     <div className="container mx-auto mt-10 px-24">
       <div className="inline-flex flex-wrap justify-center mb-10 w-full">
-        <h1 className="text-3xl">Current Capacity: 200</h1>
+        <h1 className="text-3xl">{`Current Available Seats: ${seatsAvailable} / ${maxCapacity}`}</h1>
       </div>
       <div className="inline-flex flex-wrap justify-center w-full">
         {tablesInRestaurant}
