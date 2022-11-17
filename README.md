@@ -4,11 +4,16 @@ getAtable was created with the goal of saving time by assisting consumers in mak
 
 This full-stack application also serves to fulfill the academic requirements of General Assembly's Software Engineering Immersive capstone project.
 
-</br>
-
 # Table of Contents
 
-</br>
+1. [Description](#description)
+2. [Technologies Used](#technologies-used)
+3. [Dependencies to install](#dependencies-to-install)
+4. [Users Stories](#users-stories)
+5. [Wireframes](#wireframes)
+6. [Back-end Repo](#link-to-getatable-backend-repo)
+7. [API endpoints](#api-endpoints)
+8. [Tables](#tables)
 
 # Description
 
@@ -20,43 +25,26 @@ Since calling a restaurant during peak hours is a pain, wouldn't it be great to 
 
 This is what getAtable aims to accomplish.
 
-</br>
-
 # Technologies Used
 
-## Front-end
-
-|     |                                        |
+|     | Front-end                              |
 | --- | -------------------------------------- |
 | 1   | React.js                               |
 | 2   | HTML                                   |
 | 3   | CSS: Tailwindcss and Tailwind Elements |
 
-</br>
-
-## Back-end
-
-|     |               |
+|     | Back-end      |
 | --- | ------------- |
 | 1   | Express.js    |
 | 2   | node-postgres |
 
-</br>
-
-## Database
-
-|     |            |
+|     | Database   |
 | --- | ---------- |
 | 1   | Postgresql |
 
-</br>
-</br>
-
 # Dependencies to install
 
-### --> In React.js
-
-|     |                   |
+|     | In React.js       |
 | --- | ----------------- |
 | 1   | React-Hook-Form   |
 | 2   | React-Router-Dom  |
@@ -69,9 +57,7 @@ This is what getAtable aims to accomplish.
 
 </br>
 
-### --> In Express.js
-
-|     |               |
+|     | In Express.js |
 | --- | ------------- |
 | 1   | Node-Postgres |
 | 2   | BCrypt        |
@@ -120,8 +106,6 @@ What information I can check using the app:
 - if there is enough capacity to take in X number of diners
 - if there is a long waiting time (queue situation)
 
-</br>
-
 ## Restaurants
 
 Why should the restaurant/cafe/bars use the app?
@@ -137,8 +121,6 @@ Why should the restaurant/cafe/bars use the app?
   - a digital menu for ordering
   - kitchen management
 
-</br>
-
 # Types of login
 
 |     | Login              | Routes             |
@@ -147,31 +129,21 @@ Why should the restaurant/cafe/bars use the app?
 | 2   | Restaurant Manager | /restaurants/login |
 | 3   | Restaurant Staff   | /restaurants/login |
 
-</br>
-
 # Wireframes
 
-![getAtable_wireframe](src\images\wireframe\getAtable_wireframe.png)
-
-</br>
+![getAtable_wireframe](C:\Users\flowe\OneDrive\Coding\Projects\getAtable\src\images\wireframe\getAtable_wireframe.png)
 
 <!-- # List of Features -->
 
-</br>
-
 # Regarding Back-end
+
+</br>
 
 ## [Link](https://github.com/girafffz/getAtable-Backend) to getAtable backend repo
 
-</br>
-
 ## API Endpoints
 
-</br>
-
 ### 1. Users Endpoints
-
-</br>
 
 | CRUD Operation | Description             | API endpoints   |
 | -------------- | ----------------------- | --------------- |
@@ -181,12 +153,7 @@ Why should the restaurant/cafe/bars use the app?
 | Read           | Update a user's details | /users/:user_id |
 | Read           | View all users          | /users          |
 
-</br>
-</br>
-
 ### 2. Restaurant Endpoints
-
-</br>
 
 | CRUD Operation | Description                   | API endpoints    |
 | -------------- | ----------------------------- | ---------------- |
@@ -195,12 +162,7 @@ Why should the restaurant/cafe/bars use the app?
 | Update         | Update a restaurant's details | /restaurants/    |
 | Read           | View all restaurants          | /restaurants/    |
 
-</br>
-</br>
-
 ### 3. Restaurant Staff Endpoints
-
-</br>
 
 | CRUD Operation | Description                    | API endpoints                 |
 | -------------- | ------------------------------ | ----------------------------- |
@@ -211,21 +173,13 @@ Why should the restaurant/cafe/bars use the app?
 | Delete         | Delete a staff's account       | /restaurants/:id/staff/delete |
 | Read           | View all staff of a restaurant | /restaurants/:id/staff        |
 
-</br>
-</br>
-
 ### 4. Restaurant Seats Capacity Endpoints
-
-</br>
 
 | CRUD Operation | Description                    | API endpoints             |
 | -------------- | ------------------------------ | ------------------------- |
 | Create         | Create a restaurant's capacity | /restaurants/:id/capacity |
 | Read           | View a restaurant's capacity   | /restaurants/:id/capacity |
 | Update         | Update a restaurant's capacity | /restaurants/:id/capacity |
-
-</br>
-</br>
 
 ## Tables
 
