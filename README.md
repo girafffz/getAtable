@@ -131,15 +131,13 @@ Why should the restaurant/cafe/bars use the app?
 
 # Wireframes
 
-![getAtable_wireframe](C:\Users\flowe\OneDrive\Coding\Projects\getAtable\src\images\wireframe\getAtable_wireframe.png)
+![getAtable_wireframe](src/images/wireframe/getAtable_wireframe.png)
 
 <!-- # List of Features -->
 
 # Regarding Back-end
 
-</br>
-
-## [Link](https://github.com/girafffz/getAtable-Backend) to getAtable backend repo
+### [Link](https://github.com/girafffz/getAtable-Backend) to getAtable backend repo
 
 ## API Endpoints
 
