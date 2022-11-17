@@ -139,6 +139,8 @@ Why should the restaurant/cafe/bars use the app?
 
 ### [Link](https://github.com/girafffz/getAtable-Backend) to getAtable backend repo
 
+</br>
+
 ## API Endpoints
 
 ### 1. Users Endpoints
