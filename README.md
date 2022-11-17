@@ -27,20 +27,20 @@ This is what getAtable aims to accomplish.
 
 # Technologies Used
 
-|     | Front-end                              |
-| --- | -------------------------------------- |
-| 1   | React.js                               |
-| 2   | HTML                                   |
-| 3   | CSS: Tailwindcss and Tailwind Elements |
-| --- | -------------------------------------- |
-|     | Back-end                               |
-| --- | -------------------------------------- |
-| 1   | Express.js                             |
-| 2   | node-postgres                          |
-| --- | -------------------------------------- |
-|     | Database                               |
-| --- | -------------------------------------- |
-| 1   | Postgresql                             |
+### Front-end
+
+1. React.js
+2. HTML
+3. CSS: Tailwindcss and Tailwind Elements
+
+### Back-end
+
+1. Express.js
+2. node-postgres
+
+### Database
+
+1. Postgresql
 
 # Dependencies to install
 
