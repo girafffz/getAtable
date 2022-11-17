@@ -8,7 +8,10 @@ import UserLogin from "./pages/login/UserLogin";
 import StaffLogin from "./pages/login/StaffLogin";
 // import UsersLanding from "./pages/users/UsersLanding";
 import UserRegister from "./pages/register/UserRegister";
+import UserFavourites from "./pages/users/UserFavourites";
+import UserHistory from "./pages/users/UserHistory";
 import UserDetails from "./pages/users/UserDetails";
+import UserReviews from "./pages/reviews/UserReviews";
 import RestaurantListing from "./pages/restaurants/RestaurantListing";
 import RestaurantsLanding from "./pages/restaurants/RestaurantsLanding";
 import RestaurantRegister from "./pages/register/RestaurantRegister";
@@ -29,7 +32,7 @@ function App() {
   );
   const [usersUrl, setUsersUrl] = useState("http://localhost:3000/users");
   const [restaurantSite, setRestaurantSite] = useState(false);
-  const [accountType, setAccountType] = useState("");
+  const [accountType, setAccountType] = useState(""); // 3 types: user, restaurant and ""
   const [searchInput, setSearchInput] = useState("");
 
   return (
@@ -81,9 +84,9 @@ function App() {
                 />
               }
             />
-            {/* <Route path="/users/:id/favourites" element={<UserFavourites />} /> */}
-            {/* <Route path="/users/:id/history" element={<UserHistory />} /> */}
-            {/* <Route path="/users/:id/reviews" element={<UserReviews />} /> */}
+            <Route path="/users/:id/favourites" element={<UserFavourites />} />
+            <Route path="/users/:id/history" element={<UserHistory />} />
+            <Route path="/users/:id/reviews" element={<UserReviews />} />
             <Route path="/restaurants" element={<RestaurantsLanding />} />
             <Route
               path="/restaurants/register"
