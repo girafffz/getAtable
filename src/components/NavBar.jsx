@@ -82,7 +82,9 @@ const NavBar = (props) => {
               : "hidden"
           }`}
         >
-          {`Welcome, ${loginCtx.personLogin?.name} (${loginCtx.personLogin?.role})`}
+          {`Welcome, ${loginCtx.personLogin?.name} ${
+            loginCtx.personLogin?.role ? loginCtx.personLogin?.role : ""
+          }`}
         </div>
       </div>
       <hr className="bg-white"></hr>
@@ -90,7 +92,7 @@ const NavBar = (props) => {
       {/* ---- USERS MENU BUTTONS ---- */}
       <div
         className={`${
-          props.accountType === "user"
+          loginCtx.isLogin && loginCtx.accountType === "user"
             ? "hidden gap-12 justify-center px-24 bg-lightBrown md:flex"
             : "hidden"
         }`}
