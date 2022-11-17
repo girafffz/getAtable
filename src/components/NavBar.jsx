@@ -3,6 +3,7 @@ import { NavLink, Link, useNavigate, useParams } from "react-router-dom";
 import LoginContext from "../context/LoginContext";
 
 import logo from "../images/logo.png";
+import restaurantLogo from "../images/restaurantLogo.png";
 
 const NavBar = (props) => {
   const loginCtx = useContext(LoginContext);
@@ -37,7 +38,11 @@ const NavBar = (props) => {
       <div className="flex items-center bg-white px-24 py-3">
         <div className="logo w-1/2">
           <Link to="/" onClick={() => handleLogoClick()}>
-            <img src={logo} alt="logo" className="w-20 py-3 md:w-40" />
+            <img
+              src={loginCtx.restaurantSite ? restaurantLogo : logo}
+              alt="logo"
+              className="w-20 py-3 md:w-40"
+            />
           </Link>
         </div>
         <div

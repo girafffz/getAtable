@@ -16,7 +16,13 @@ const RestaurantRegister = (props) => {
 
   const onError = (errors) => console.log(errors);
   return (
-    <div className="flex container mx-auto mt-10 px-24 md:px-60 md:w-5/6">
+    <div className="container mx-auto mt-10 px-24 md:px-60 md:w-5/6">
+      <h1 className="text-3xl font-semibold text-center justify-center mb-4">
+        Welcome!
+      </h1>
+      <p className="text-center justify-center mb-12">
+        Create your free account
+      </p>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
         {/* ---- NAME OF RESTAURANT ---- */}
         <div className="form-group">

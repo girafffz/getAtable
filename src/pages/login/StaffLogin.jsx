@@ -82,6 +82,9 @@ const StaffLogin = () => {
   const onError = (errors) => console.log(errors);
   return (
     <div className="container mx-auto justify-center mt-10 px-24 md:px-60 md:w-3/5">
+      <h1 className="text-3xl font-semibold text-center justify-center mb-12">
+        Login into your account
+      </h1>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
         {/* ---- EMAIL ---- */}
         <div className="form-group">
