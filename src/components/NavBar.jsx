@@ -5,16 +5,22 @@ import LoginContext from "../context/LoginContext";
 import logo from "../images/logo.png";
 import restaurantLogo from "../images/restaurantLogo.png";
 
-const NavBar = (props) => {
+const NavBar = () => {
   const loginCtx = useContext(LoginContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
   const goRestaurantSite = () => {
     loginCtx.setRestaurantSite(true);
-    navigate("/restaurants");
+
+    if (loginCtx.accountType === "user") {
+      loginCtx.setIsLogin(false);
+      loginCtx.setPersonLogin(undefined);
+      loginCtx.setAccountType("");
+    }
   };
 
+  // clicking logo resets everything (which acts like a form of logout)
   const handleLogoClick = () => {
     loginCtx.setRestaurantSite(false);
     loginCtx.isLogin(false);
