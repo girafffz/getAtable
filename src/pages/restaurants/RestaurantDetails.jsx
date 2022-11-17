@@ -20,7 +20,9 @@ const RestaurantDetails = () => {
       loginCtx.setRestaurantSite(true);
     }
   }, []);
-  return <div className="container mx-auto px-24">Restaurant Details</div>;
+  return (
+    <div className="container mx-auto mt-10 px-24">Restaurant Details</div>
+  );
 };
 
 export default RestaurantDetails;
