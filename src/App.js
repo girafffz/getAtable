@@ -19,6 +19,7 @@ import RestaurantDetails from "./pages/restaurants/RestaurantDetails";
 import RestaurantSeatsManagement from "./pages/restaurants/RestaurantSeatsManagement";
 import RestaurantStaffManagement from "./pages/restaurants/RestaurantStaffManagement";
 import RestaurantTablesSetting from "./pages/restaurants/RestaurantTablesSetting";
+import RestaurantReviews from "./pages/reviews/RestaurantReviews";
 import Footer from "./components/Footer";
 
 import LoginContext from "./context/LoginContext";
@@ -101,10 +102,10 @@ function App() {
               path="/restaurants/:id/staff"
               element={<RestaurantStaffManagement />}
             />
-            {/* <Route
-            path="/restaurants/:id/reviews"
-            element={<RestaurantReviews />}
-          /> */}
+            <Route
+              path="/restaurants/:id/reviews"
+              element={<RestaurantReviews />}
+            />
             <Route
               path="/restaurants/:id/seats"
               element={<RestaurantSeatsManagement />}
