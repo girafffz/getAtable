@@ -21,7 +21,15 @@ const RestaurantDetails = () => {
     }
   }, []);
   return (
-    <div className="container mx-auto mt-10 px-24">Restaurant Details</div>
+    <>
+      <div className="container mx-auto text-center mt-10 px-24">
+        <h1 className="text-3xl font-semibold">{`Restaurant Account Details`}</h1>
+        <br />
+        <p className="text-xl">Under Construction</p>
+        <br />
+        <p>This page will contains all the RestaurantDetails's details</p>
+      </div>
+    </>
   );
 };
 
