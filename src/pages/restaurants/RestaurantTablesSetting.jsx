@@ -91,7 +91,7 @@ const RestaurantTablesSetting = () => {
         <h1 className="text-3xl">Existing Tables</h1>
       </div>
       <div className="container mx-auto mt-5 px-24 md:flex">
-        <h3 className="text-xl">Maximum Capacity: 200</h3>
+        <h3 className="text-xl">Maximum Capacity: 50</h3>
       </div>
       <div className="container mx-auto mt-10 px-24">
         {/* ---- Table Card ---- */}
