@@ -7,6 +7,8 @@ const RestaurantTablesSetting = () => {
   const [tableIsCreated, setTableIsCreated] = useState(false);
   const [tablesInRestaurant, setTablesInRestaurant] = useState();
   const [newTableData, setNewTableData] = useState(undefined); // store data for new table to be added to db
+  const [tableNum, setTableNum] = useState(undefined);
+  const [deletedTable, setDeleteTable] = useState(false);
   const [allTablesData, setAllTablesData] = useState(undefined); // store data for all tables retrieved from db
   const [maxCapacity, setMaxCapacity] = useState(0); // store max capacity data retrieved from db
 
@@ -53,10 +55,34 @@ const RestaurantTablesSetting = () => {
     createNewTable();
   }, [newTableData]);
 
+  // Delete table
+  useEffect(() => {
+    if (tableNum !== undefined) {
+      const deleteSelectedTable = async () => {
+        try {
+          const res = await fetch(
+            `http://127.0.0.1:5000/api/restaurants/${id}/capacity`,
+            {
+              method: "DELETE",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(tableNum),
+            }
+          );
+          const createdData = await res.json();
+          if (createdData.status === "delete successful") {
+            setDeleteTable(false);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      deleteSelectedTable();
+    }
+  }, [deletedTable]);
+
   // Retrieving data from database
   useEffect(() => {
     const getAllTablesCreated = async () => {
-      console.log(tableIsCreated);
       try {
         const res = await fetch(
           `http://127.0.0.1:5000/api/restaurants/${id}/capacity`,
@@ -74,18 +100,18 @@ const RestaurantTablesSetting = () => {
       }
     };
     getAllTablesCreated();
-  }, [tableIsCreated, id]);
+  }, [tableIsCreated, deletedTable, id]);
 
   useEffect(() => {
     if (allTablesData !== undefined) {
       renderTablesCreated();
     }
-  }, [allTablesData, tableIsCreated, id]);
+  }, [allTablesData, tableIsCreated, deletedTable, id]);
 
   const renderTablesCreated = () => {
-    const allTablesCreated = allTablesData.map((table) => {
+    const allTablesCreated = allTablesData.map((table, i) => {
       return (
-        <div key={`${table.id}`}>
+        <div key={i}>
           <div className=" items-center mb-3 p-6 rounded-lg border border-gray-300 bg-white w-full md:flex">
             <div className="mt-2 md:flex md:w-2/3 md:space-x-2 md:mt-0">
               <h5 className="text-xl leading-tight font-medium md:px-3 md:w-1/4 py-1.5">
@@ -96,14 +122,15 @@ const RestaurantTablesSetting = () => {
               </h5>
             </div>
             <div className="space-x-2 mt-2 md:flex md:w-1/3 md:justify-end md:mt-0">
-              <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
+              {/* <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
                 View
               </button>
               <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
                 Edit
-              </button>
+              </button> */}
               <button
-                id={`${table.id}`}
+                id={`${table.table_num}`}
+                onClick={handleDeleteClick}
                 className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150"
               >
                 Delete
@@ -121,14 +148,25 @@ const RestaurantTablesSetting = () => {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     setNewTableData(data);
     setTableIsCreated(false);
+  };
+
+  // when either view, edit or delete button is clicked
+  const getTableNum = (e) => {
+    setTableNum({
+      table_num: e.target.id,
+    });
+  };
+
+  // when delete button is clicked
+  const handleDeleteClick = (e) => {
+    getTableNum(e);
+    setDeleteTable(true);
   };
 
   const onError = (errors) => console.log(errors);
@@ -189,56 +227,7 @@ const RestaurantTablesSetting = () => {
       <div className="container mx-auto mt-5 px-24 md:flex">
         <h3 className="text-xl">{`Maximum Capacity: ${maxCapacity}`}</h3>
       </div>
-      <div className="container mx-auto mt-10 px-24">
-        {tablesInRestaurant}
-        {/* ---- Table Card ---- */}
-        {/* <div key="id1">
-          <div className=" items-center mb-3 p-6 rounded-lg border border-gray-300 bg-white w-full md:flex">
-            <div className="mt-2 md:flex md:w-2/3 md:space-x-2 md:mt-0">
-              <h5 className="text-xl leading-tight font-medium md:px-3 md:w-1/4 py-1.5">
-                Table Number: 1
-              </h5>
-              <h5 className="text-xl leading-tight font-medium md:px-3 md:w-1/4 py-1.5">
-                Table Capacity: 2
-              </h5>
-            </div>
-            <div className="space-x-2 mt-2 md:flex md:w-1/3 md:justify-end md:mt-0">
-              <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
-                View
-              </button>
-              <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
-                Edit
-              </button>
-              <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div> */}
-        {/* <div key="id2">
-          <div className=" items-center mb-3 p-6 rounded-lg border border-gray-300 bg-white w-full md:flex">
-            <div className="mt-2 md:flex md:w-2/3 md:space-x-2 md:mt-0">
-              <h5 className="text-xl leading-tight font-medium md:px-3 md:w-1/4 py-1.5">
-                Table Number: 2
-              </h5>
-              <h5 className="text-xl leading-tight font-medium md:px-3 md:w-1/4 py-1.5">
-                Table Capacity: 4
-              </h5>
-            </div>
-            <div className="space-x-2 mt-2 md:flex md:w-1/3 md:justify-end md:mt-0">
-              <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
-                View
-              </button>
-              <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
-                Edit
-              </button>
-              <button className="px-3 py-1.5 bg-lightBrown text-white font-medium text-md uppercase rounded shadow-md hover:bg-darkBrown transition duration-150">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div> */}
-      </div>
+      <div className="container mx-auto mt-10 px-24">{tablesInRestaurant}</div>
     </>
   );
 };
