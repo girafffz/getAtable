@@ -88,9 +88,9 @@ const NavBar = () => {
               : "hidden"
           }`}
         >
-          {`Welcome, ${loginCtx.personLogin?.name} ${
+          {`Welcome, ${loginCtx.personLogin?.name} (${
             loginCtx.personLogin?.role ? loginCtx.personLogin?.role : ""
-          }`}
+          })`}
         </div>
       </div>
       <hr className="bg-white"></hr>

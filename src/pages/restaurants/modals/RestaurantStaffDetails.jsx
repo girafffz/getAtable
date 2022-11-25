@@ -231,7 +231,7 @@ const RestaurantStaffDetails = (props) => {
                 </select>
               </div>
               <div className="form-group mb-3 space-y-3">
-                <label htmlFor="resigned">CURRENTLY EMPLOYED?</label>
+                <label htmlFor="resigned">Has Resigned?</label>
                 <select
                   id="resigned"
                   className="form-control w-full px-3 py-1.5 border border-solid border-gray-300 rounded"
