@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Search from "../../components/Search";
+import RestaurantCard from "./RestaurantCard";
 
 const RestaurantListing = (props) => {
   //   const [searchInput, setSearchInput] = useState("");
@@ -21,15 +22,12 @@ const RestaurantListing = (props) => {
         getRestaurants={getRestaurants}
       />
       <div className="container mx-auto px-24">
-        <div>Your search results:</div>
+        <h4 className="text-3xl mt-28">Your search results:</h4>
         <br></br>
-        ============================
-        <div>Restaurant Name: Ramen Shiba</div>
-        <div>
-          Address: 154 West Coast Road #B1-09 West Coast Plaza Singapore 127371
+
+        <div class="flex flex-wrap justify-between">
+          <RestaurantCard />
         </div>
-        <div>Current capacity: 12 / 50</div>
-        ============================
       </div>
     </>
   );
