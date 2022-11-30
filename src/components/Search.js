@@ -27,7 +27,7 @@ const Search = (props) => {
   });
 
   return (
-    <div className="container mx-auto bg-white px-24 py-6">
+    <div className="container mx-auto bg-white px-24 py-6 fixed z-10">
       <form onSubmit={handleSubmit} className="flex space-x-3">
         <input
           ref={inputRef}

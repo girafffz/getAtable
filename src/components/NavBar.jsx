@@ -29,7 +29,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="sticky top-0 container mx-auto">
+    <nav className="sticky top-0 z-10 container mx-auto">
       {/* ---- FOR GETTING TO RESTAURANTS LANDING PAGE ---- */}
       <div
         className="flex justify-end mx-auto w-full bg-darkBrown text-white border-2 border-b-lightBrown
