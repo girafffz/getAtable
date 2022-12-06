@@ -9,16 +9,18 @@ const RestaurantCard = (props) => {
         className=" max-w-xs rounded-lg overflow-hidden shadow-lg mb-8"
       >
         <img
-          className="w-full"
+          className="w-full hidden"
           src="https://v1.tailwindcss.com/img/card-top.jpg"
           alt="Sunset in the mountains"
         />
         <div className="px-6 py-4">
-          <h6 className="font-bold text-xl uppercase mb-2">{`${props.restaurant_name}`}</h6>
+          <h6 className="font-bold text-xl uppercase truncate mb-2">{`${props.restaurant_name}`}</h6>
 
           <p className="text-orange-400 text-sm font-semibold">
-            29 Reviews
-            <span className="ml-2">42 Wishlisted</span>
+            {`${Math.floor(Math.random() * 585)} Reviews`}
+            <span className="ml-2">{`${Math.floor(
+              Math.random() * 484
+            )} Wishlisted`}</span>
           </p>
         </div>
         <div className="px-6">

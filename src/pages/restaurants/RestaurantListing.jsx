@@ -5,8 +5,6 @@ import RestaurantCard from "./RestaurantCard";
 
 const RestaurantListing = (props) => {
   ////////////////////// STATES ////////////////////
-  //////////////////////////////////////////////////
-
   const [searchResults, setSearchResults] = useState(undefined);
   const [capacityResults, setCapacityResults] = useState(undefined);
   const [fullRestaurantsInfo, setFullRestaurantsInfo] = useState(undefined);
@@ -46,7 +44,6 @@ const RestaurantListing = (props) => {
       });
       const restaurantsData = await res.json();
       setSearchResults(restaurantsData.data.restaurants);
-      console.log(restaurantsData.data.restaurants);
 
       // getting capacity data for each restaurant based on search results
       for (let i = 0; i < restaurantsData.total_results; i++) {
@@ -65,8 +62,6 @@ const RestaurantListing = (props) => {
         if (restaurantsData.total_results === capacityOfEachRestaurant.length) {
           setCapacityResults(capacityOfEachRestaurant);
         }
-
-        console.log(capacityOfEachRestaurant);
       }
     } catch (error) {
       console.log(error);
@@ -82,6 +77,7 @@ const RestaurantListing = (props) => {
           restaurantsArray.push({
             restaurant_id: searchResults[i].id,
             restaurant_name: searchResults[i].name,
+            restaurant_building: searchResults[i].restaurant_building_name,
             restaurant_location: searchResults[i].location_id,
             restaurant_maxCapacity: capacityResults[j].max_capacity,
             restaurant_seatsAvailable: capacityResults[j].seats_available,
@@ -93,12 +89,14 @@ const RestaurantListing = (props) => {
   };
 
   const renderRestaurantCards = () => {
-    const cards = fullRestaurantsInfo.map((restaurant) => {
+    const cards = fullRestaurantsInfo.map((restaurant, i) => {
       return (
         <RestaurantCard
+          key={i}
           restaurant_id={restaurant.restaurant_id}
           restaurant_name={restaurant.restaurant_name}
           restaurant_location={restaurant.restaurant_location}
+          restaurant_building={restaurant.restaurant_building_name}
           restaurant_seatsAvailable={restaurant.restaurant_seatsAvailable}
           restaurant_maxCapacity={restaurant.restaurant_maxCapacity}
         />
@@ -115,7 +113,10 @@ const RestaurantListing = (props) => {
         getRestaurants={getRestaurants}
       />
       <div className="container mx-auto px-24">
-        <h4 className="text-3xl mt-28">Your search results:</h4>
+        <h4 className="text-3xl font-medium uppercase mt-28">
+          Results for{" "}
+          <span className="text-3xl text-orange-600">{`${props.searchInput}`}</span>
+        </h4>
         <br></br>
         <div className="flex flex-wrap justify-between">{restaurantCards}</div>
       </div>
