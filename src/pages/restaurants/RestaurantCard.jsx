@@ -1,16 +1,20 @@
 import React from "react";
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+  console.log(props);
   return (
     <>
-      <div className=" max-w-xs rounded-lg overflow-hidden shadow-lg mb-8">
+      <div
+        id={`${props.restaurant_id}`}
+        className=" max-w-xs rounded-lg overflow-hidden shadow-lg mb-8"
+      >
         <img
           className="w-full"
           src="https://v1.tailwindcss.com/img/card-top.jpg"
           alt="Sunset in the mountains"
         />
         <div className="px-6 py-4">
-          <h6 className="font-bold text-xl uppercase mb-2">Acqua e Farina</h6>
+          <h6 className="font-bold text-xl uppercase mb-2">{`${props.restaurant_name}`}</h6>
 
           <p className="text-orange-400 text-sm font-semibold">
             29 Reviews
@@ -20,11 +24,11 @@ const RestaurantCard = () => {
         <div className="px-6">
           <p className="flex text-darkBrown mb-2">
             <span className="material-symbols-outlined mr-2">location_on</span>
-            The Rail Mall
+            {`${props.restaurant_location}`}
           </p>
           <p className="flex text-darkBrown">
-            <span class="material-symbols-outlined mr-2">chair_alt</span>
-            Seats Available: 50 / 200
+            <span className="material-symbols-outlined mr-2">chair_alt</span>
+            {`Seats Available: ${props.restaurant_seatsAvailable} / ${props.restaurant_maxCapacity}`}
           </p>
         </div>
         <div className="px-6 pt-4 pb-2">
