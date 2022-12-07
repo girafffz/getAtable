@@ -6,7 +6,7 @@ const RestaurantCard = (props) => {
     <>
       <div
         id={`${props.restaurant_id}`}
-        className=" max-w-xs rounded-lg overflow-hidden shadow-lg mb-8"
+        className=" max-w-xs w-80 rounded-lg overflow-hidden shadow-lg mb-8"
       >
         <img
           className="w-full hidden"
