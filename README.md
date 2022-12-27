@@ -1,6 +1,6 @@
 # getAtable
 
-getAtable was created with the goal of saving time by assisting consumers in making decisions when looking for restaurants that can accommodate their party size for an unplanned group lunch or dinner.
+getAtable is a full-stack app built using the PERN stack (PostgreSQL, Express, React, and Node.js) to provide a seamless and efficient user experience. It's more than just a restaurant reservation app – it's a time-saving solution for customers and a valuable tool for restaurants. By assisting customers in finding and verifying current restaurant seating capacity, especially for walk-in only establishments, the app helps customers save time and plan impromptu group meals more easily. At the same time, it helps restaurants manage their seating capacity and attract more customers by displaying available seats to users.
 
 This full-stack application also serves to fulfill the academic requirements of General Assembly's Software Engineering Immersive capstone project.
 
