@@ -74,15 +74,9 @@ Not only does getatable provide real-time information on restaurant seating capa
 - As a consumer, I want to see real-time information on restaurant seating capacity and availability so that I can easily find and verify which restaurants can accommodate my group without having to call or wait for a response.
 - As a consumer, I want to be able to make reservations or add my name to a waitlist directly through the app so that I can easily plan my meal without having to call or visit the restaurant in person.
 
-## Restaurants
-
-- As a restaurant, I want to be able to update my seating capacity and availability in real time so that I can accurately reflect my current availability and attract more customers.
-- As a restaurant, I want to be able to integrate the app with my POS system so that I can easily manage reservations and waitlists and streamline my operations.
-- As a restaurant, I want to be able to customize my profile and menu on the app so that I can showcase my offerings to potential customers.
-
 </br>
 
-Why should I use the app?
+Why should I as a consumer use the app?
 
 - an app that allows me to save time, effort and avoid disappointment when dining out in groups
 - good for impromptu lunch/dinner plans
@@ -108,6 +102,12 @@ What information I can check using the app:
 - if there is a long waiting time (queue situation)
 
 ## Restaurants
+
+- As a restaurant, I want to be able to update my seating capacity and availability in real time so that I can accurately reflect my current availability and attract more customers.
+- As a restaurant, I want to be able to integrate the app with my POS system so that I can easily manage reservations and waitlists and streamline my operations.
+- As a restaurant, I want to be able to customize my profile and menu on the app so that I can showcase my offerings to potential customers.
+
+</br>
 
 Why should the restaurant/cafe/bars use the app?
 
