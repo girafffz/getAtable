@@ -17,13 +17,9 @@ This full-stack application also serves to fulfill the academic requirements of 
 
 # Description
 
-We are all familiar with the feeling of disappointment upon arriving at a walk-in only restaurant/café/bar only to learn that the venue is filled and a long line of people waiting to be seated. The options available would be either join the wait or to stroll around seeking for alternative places and settle on one before it is too late for the last order.
+We've all experienced the disappointment of arriving at a walk-in only restaurant, only to find that it's filled and there's a long line of people waiting to be seated. Instead of joining the wait or searching for alternative places, wouldn't it be great to have an app that can help you avoid disappointment and wasted time? That's what getAtable aims to accomplish. It provides real-time information on restaurant seating capacity and availability, so you know exactly what to expect when you arrive. Plus, it eliminates the need to call restaurants or search for information on your phone, making it easy to plan hassle-free meals, whether you're with a group or just looking for a quick bite.
 
-Times like this ruins the fun of any gathering.
-
-Since calling a restaurant during peak hours is a pain, wouldn't it be great to have an app that can verify a restaurant's current seating capacity without having to call the restaurant and search for other similar locations nearby with your phone that can accommodate your party size and dietary requirements if your first choice is unavailable prior to your arrival?
-
-This is what getAtable aims to accomplish.
+Not only does getatable provide real-time information on restaurant seating capacity and availability to help consumers plan hassle-free meals, but it also allows restaurants to manage their seat capacity in real time by integrating the program with their POS system. This saves time and hassle for both consumers and restaurants – consumers can easily find and verify seating availability without having to wait for a response from the restaurant, and restaurants can avoid the time and effort required to answer phone calls about seating availability, getAtable helps restaurants attract more customers and streamline their operations.
 
 # Technologies Used
 
@@ -74,10 +70,15 @@ This is what getAtable aims to accomplish.
 
 ## Consumers
 
-When a restaurant does not accept reservations, as a consumer, I would like to be able to:
+- As a consumer, I want to be able to search for restaurants by location, party size, and dietary requirements so that I can find a restaurant that meets my needs and can accommodate my group.
+- As a consumer, I want to see real-time information on restaurant seating capacity and availability so that I can easily find and verify which restaurants can accommodate my group without having to call or wait for a response.
+- As a consumer, I want to be able to make reservations or add my name to a waitlist directly through the app so that I can easily plan my meal without having to call or visit the restaurant in person.
 
-1. Check the status of a restaurant easily, preferably without calling, when deciding where to eat during a group outing
-2. Look for alternatives if my first choice is full or waiting time is too long
+## Restaurants
+
+- As a restaurant, I want to be able to update my seating capacity and availability in real time so that I can accurately reflect my current availability and attract more customers.
+- As a restaurant, I want to be able to integrate the app with my POS system so that I can easily manage reservations and waitlists and streamline my operations.
+- As a restaurant, I want to be able to customize my profile and menu on the app so that I can showcase my offerings to potential customers.
 
 </br>
 
